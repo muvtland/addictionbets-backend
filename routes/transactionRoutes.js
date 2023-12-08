@@ -60,6 +60,7 @@ router.get('/', auth, async (req, res) => {
         const transactions = await Transaction.find({ userId });
         res.json({ transactions });
     } catch (e) {
+        console.log(e)
         res.status(400).json({ error: { message: 'something went wrong' }})
     }
 });

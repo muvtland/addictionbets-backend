@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 3030;
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-
 app.use(cors({ origin: '*' }));
 
 app.use("/user", userRoutes);

@@ -26,7 +26,7 @@ router.post('/login', async (req, res)=> {
         if (!user){
             user = await User.create({
                 balance: '0',
-                walletAddress: expected,
+                walletAddress: address,
                 signature,
             });
         }
@@ -38,6 +38,7 @@ router.post('/login', async (req, res)=> {
 
         res.status(200).json({token, user})
     }catch (e) {
+        console.log(e)
         res.status(400).json({ error: { message: 'something went wrong' } })
     }
 });
@@ -48,6 +49,7 @@ router.get('/verify', auth, async (req, res)=> {
         const user = await User.findById(userId);
         res.json({ user })
     }catch (e) {
+        console.log(e)
         res.status(400).json({ error: { message: 'something went wrong' } })
     }
 });
@@ -62,6 +64,7 @@ router.put('/', auth, async (req, res)=> {
 
         res.status(200).json({user});
     }catch (e) {
+        console.log(e)
         res.status(400).json({ error: { message: 'something went wrong' } })
     }
 });
