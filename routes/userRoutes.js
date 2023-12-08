@@ -2,7 +2,7 @@ import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import { ethers } from 'ethers';
 import User from '../models/User.js';
-import { auth } from "../middleware/auth.js";
+import { auth } from '../middleware/auth.js';
 import { client } from '../config/redis.js';
 
 const router = Router();
@@ -63,6 +63,17 @@ router.put('/', auth, async (req, res)=> {
         res.status(200).json({user});
     }catch (e) {
         res.status(400).json({ error: { message: 'something went wrong' } })
+    }
+});
+
+router.get('/balance', auth, async (req, res) => {
+    try {
+        const userId = req.userId;
+        const user = await User.findById(userId);
+        res.json({ balance: user.balance });
+    } catch (e) {
+        console.log(e)
+        res.status(400).json({error: { message: 'something went wrong' }})
     }
 });
 

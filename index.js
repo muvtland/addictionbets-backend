@@ -7,8 +7,6 @@ import transactionRoutes from './routes/transactionRoutes.js';
 import connectDB from './config/db.js';
 const PORT = process.env.PORT || 3030;
 
-
-
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());

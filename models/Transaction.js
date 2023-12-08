@@ -6,7 +6,6 @@ const transactionSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
-        unique: true,
     },
     type: {
         type: String,

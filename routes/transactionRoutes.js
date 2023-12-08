@@ -75,10 +75,11 @@ router.post('/', auth, async (req, res) => {
             coin,
             hash: txHash
         });
-
         res.json({ transaction });
     } catch (e) {
+        console.log(e)
         res.status(400).json({error: { message: 'something went wrong' }})
     }
 });
+
 export default router;
